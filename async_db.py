@@ -1,4 +1,6 @@
+import asyncio
 import logging
+
 import aiomysql
 
 class async_db:
@@ -18,7 +20,6 @@ class async_db:
             The name of the database to connect to.
         tables : dict
         """
-        import asyncio
         self.p = password
         if not ip:
             ip = "localhost"
