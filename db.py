@@ -2,7 +2,7 @@ import logging
 import pymysql
 
 class db:
-    def __init__(self, user, password, ip, database, tables):
+    def __init__(self, user, password, ip, database, tables=None):
         self.p = password
         if not ip:
             ip = "localhost"
