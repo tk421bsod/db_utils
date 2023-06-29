@@ -29,6 +29,6 @@ To perform queries, just call `<instance>.exec()` and pass it your query and any
 Parameters are represented by `%s` in queries and are passed as a tuple to `exec`.  
 If your query doesn't require parameters, pass an empty tuple.  
   
-Using `async_db`? Queries always return a list of dicts.
-Using `db`? Queries return a list of dicts, but can return a dict by itself.
-These dicts follow the format `{"column_name":"value"}`.
+Using `async_db`? Queries always return a list of dicts.  
+Using `db`? Queries return a list of dicts, but can sometimes return a dict by itself.  
+These dicts follow the format `{"column_name":"value"}`.  
