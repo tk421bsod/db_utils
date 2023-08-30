@@ -11,9 +11,9 @@ class db:
         self.database = database
         self.failed = False
         self.logger = logging.getLogger(name=f'db')
+        self.user = user
         self.conn = self.attempt_connection()
         self.logger.info("Connected to database.")
-        self.user = user
 
     def requires_connection(func):
         def requires_connection_inner(self, *args, **kwargs):
