@@ -1,6 +1,5 @@
 # db_utils
-Some database interface stuff used across some Python projects.  
-Contains both sync and async implementations of essentially the same API.  
+Synchronous and asynchronous implementations of a simple API for interaction with a MySQL database.
   
 ## usage
 Ensure that you have:
@@ -14,8 +13,10 @@ In your application, import the class you need and instantiate it, passing it:
 - Password in plain text
 - IP address of the server (can be localhost)
 - Name of the database to connect to 
-- (optional) A map of table names to schemas e.g {"user_ids":"id bigint"}. Required if using `ensure_tables`.
-
+- (optional) A map of table names to schemas e.g {"user_ids":"id bigint"}. Required if using `ensure_tables`.  
+  
+Use `async_db` if possible. It includes several optimizations and is more performant and reliable than `db`.
+  
 `db` immediately attempts a connection to the server on instance creation.  
 `async_db` does not do this to avoid blocking. You'll need to `await` `<instance>.connect()` before doing anything.  
   
