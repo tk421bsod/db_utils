@@ -44,9 +44,8 @@ class async_db:
     async def ensure_tables(self, cur):
         self.logger.info("Finishing database setup...")
         for table, schema in self.TABLES.items():
-            try:
-                await cur.execute(f'select * from {table}')
-            except aiomysql.ProgrammingError:
+            ret = await cur.execute(f"show tables like '{table}'")
+            if not ret:
                 self.logger.debug(f'Table {self.database}.{table} doesn\'t exist. Creating it.')
                 self.logger.debug(f"Schema for this table is {schema}")
                 await cur.execute(f'create table {table}({schema})')

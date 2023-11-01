@@ -31,9 +31,8 @@ class db:
     def ensure_tables(self):
         self.logger.info("Finishing database setup...")
         for table, schema in self.TABLES.items():
-            try:
-                self.conn.execute(f'select * from {table}')
-            except pymysql.err.ProgrammingError:
+            ret = self.conn.execute(f"show tables like '{table}'")
+            if not ret:
                 self.logger.debug(f'Table {self.database}.{table} doesn\'t exist. Creating it.')
                 self.logger.debug(f"Schema for this table is {schema}")
                 self.conn.execute(f'create table {table}({schema})')
