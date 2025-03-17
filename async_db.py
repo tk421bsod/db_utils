@@ -32,8 +32,9 @@ class async_db:
         self.logger.debug("Database API initialized.")
 
     def requires_connection(func):
+        """Denotes that a function requires an active connection. Acquires a connection and passes it to the function."""
         async def requires_connection_inner(self, *args, **kwargs):
-            """Handles connection acquisition for functions that require it"""
+            """Acquire a connection and pass the cursor to the decorated function"""
             async with self.pool.acquire() as conn:
                 async with conn.cursor() as cur:
                     self.logger.debug(f"Calling {func.__name__} with {args}")
